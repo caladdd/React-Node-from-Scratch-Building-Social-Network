@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -18,11 +19,12 @@ mongoose.connection.on('error', err => {
 
 //bring  in routes
 const PostRoutes = require('./posts/routes/post');
-const userRoutes = require('./user/routes/user');
+const userRoutes = require('./authentication/routes/user');
 
 //middleware
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(expressValidator());
 app.use('/', PostRoutes);
 app.use('/', userRoutes);
