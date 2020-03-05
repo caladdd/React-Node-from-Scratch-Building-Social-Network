@@ -14,7 +14,7 @@ const { userById } = require("../../authentication/controllers/user");
 
 const router = express.Router();
 
-router.get("/", getPosts);
+router.get("/posts", getPosts);
 router.post(
   "/post/new/:userId",
   requireSignIn,
